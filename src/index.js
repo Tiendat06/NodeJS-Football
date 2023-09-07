@@ -57,7 +57,7 @@ routes(app);
 
 // })
 
-// const api = process.env.API_URL
+const api = process.env.API_URL
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

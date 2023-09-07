@@ -1,0 +1,81 @@
+
+<div class="container bg-outside p-5">
+    <form id="form_id" method="post" class="form-player p-5">
+        <h1 class="text-center form-player__title">Add match</h1>
+
+        <div class="form-group p-3">
+            <label class="form-group__player" style="font-size: 1.6rem;" for="exampleFormControlSelect1">Select round</label>
+            <select id="round_id" style="font-size: 1.6rem;" class="form-control p-0" id="exampleFormControlSelect1">
+                <option value="none">--Round--</option>
+                <option value="r64">Round 1/64 (128 >= x > 64 teams)</option>
+                <option value="r32">Round 32 (x <= 64 teams)</option>
+                <option value="r16">Round 16 (x <= 32 teams)</option>
+                <option value="r8">Round 1/8 (x <= 16 teams)</option>
+                <option value="r4">Round quarter final (x <= 8 teams)</option>
+                <option value="r2">Round Semi final (x <= 4 teams)</option>
+            </select>
+        </div>
+
+        <div class="form-group p-3">
+            <label class="form-group__player" style="font-size: 1.6rem;" for="player1">Select player1</label>
+            <select style="font-size: 1.6rem;" name="player1" class="form-control p-0" id="player1">
+                <option value="none">--Player 1--</option>
+                {{#each players}}
+                <option value="{{this.player_id}}">{{this.player_id}}/{{this.player_name}}/{{this.player_phone}} </option>
+
+                {{/each}}
+            </select>
+        </div>
+    
+        <div class="form-group p-3">
+            <label class="form-group__player" style="font-size: 1.6rem;" for="player2">Select player2</label>
+            <select style="font-size: 1.6rem;" name="player2" class="form-control p-0" id="player2">
+                <option value="none">--Player 2--</option>
+                {{#each players}}
+                <option value="{{this.player_id}}">{{this.player_id}}/{{this.player_name}}/{{this.player_phone}} </option>
+
+                {{/each}}
+            </select>
+        </div>
+    
+        <div class="form-group p-3">
+            <label class="form-group__player" style="font-size: 1.6rem;" for="exampleFormControlSelect4">Select Match</label>
+            <select id="match_select" style="font-size: 1.6rem;" name="match" class="form-control p-0" id="exampleFormControlSelect4">
+                <option value="none">--Match--</option>
+                {{#each r64}}
+                <option value="{{this.RID}}">{{this.RID}}</option>
+
+                {{/each}}
+            </select>
+        </div>
+    
+        <div class="btn-site w-100 text-center">
+            <p id="btn" style="font-size: 1.6rem;" name="btn" type="submit" class="btn btn-success btn-add">Add</p>
+        </div>
+    
+    
+    </form>
+
+</div>
+<script>
+    //onChangeRound();
+
+    function checkRound(){
+        $('#btn').click(() => {
+            var round = $('#match_select').val();
+            var player1 = $('#player1').val();
+            var player2 = $('#player2').val();
+
+            if(player1 != player2){
+                $('#form_id').attr('method', 'post');
+                $('#form_id').attr('action', `/player/add/${round}?_method=PUT`)
+            }else{
+                alert('Duplicate player')
+                $('#form_id').attr('method', 'get');
+                $('#form_id').attr('action', '/player');
+            }
+
+        })
+    }
+    checkRound();
+</script>

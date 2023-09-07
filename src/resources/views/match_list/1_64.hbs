@@ -1,0 +1,93 @@
+<div class="match-container container bg-outside p-5">
+    <div class="row">
+    <h1 style="font-size: 3rem;text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);" class="text-center text-light m-auto p-4 col-lg-12 col-md-12 col-sm-12">Round 64</h1>
+    <input style="font-size: 1.6rem; border-radius: 20px;outline:none; border: none;box-shadow: 3px 3px 5px rgba(69, 69, 69, 0.5);" placeholder="Search On All" type="text" name="" id="search-input" class="manage-film__input w-50 mx-auto p-3 mb-5">
+
+    <table id='table' class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Match</th>
+                <th scope="col">Player 1</th>
+                <th scope="col"><i class="fa-solid fa-sword"></i></th>
+                <th scope="col">Player 2</th>
+                <th scope="col">Winner</th>
+                <th scope="col">Loser</th>
+                <th scope="col">W result</th>
+                <th scope="col">L result</th>
+                <th scope="col">More</th>
+                <th scope="col" colspan="2">Update</th>
+                <!-- <th scope="col">Update</th> -->
+
+                <!-- -->
+            </tr>
+        </thead>
+        <tbody>
+            {{#each r64}}
+            <tr class="tr">
+                <form action="" method="post">
+                    {{!-- {{#if (compareNumber10_100 @index) }}
+                        <th scope="row">Match 00{{sum @index 1}} </th>
+                    {{/if}}
+                    {{#if (compareNumber100 @index)}} 
+                        <th scope="row">Match 0{{sum @index 1}} </th>
+                    {{/if}}
+                    {{#if (compareNumber1000 @index)}}
+                    {{/if}}  --}}
+                    {{!-- {{sttMatch @index}} --}}
+                    <th scope="row">Match {{sttMatch @index}} </th>
+                    <td class=" checkAttendance($player1) "> {{this.player1}}</td>
+                    <td>vs</td>
+                    <td class=" checkAttendance($player2)"> {{this.player2}}</td>
+                    <td>
+                        <select name="winner" id="">
+                            <option value="">--Winner--</option>
+                            <option value=" $player1"> {{this.player1}} </option>
+                            <option value=" $player2"> {{this.player2}} </option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="loser" id="">
+                            <option value="">--Loser--</option>
+                            <option value=" $player1"> {{this.player1}} </option>
+                            <option value=" $player2"> {{this.player2}} </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="{{this.winner_result}}" class="text-center match-list__inp" style="width: 30px;height: 30px;" type="text" name="w_result" id="" required>
+                    </td>
+                    <td>
+                        <input value=" {{this.loser_result}}" class="text-center match-list__inp" style="width: 30px;height: 30px;" type="text" name="l_result" id="" required>
+                    </td>
+                    <td>
+                        <a style="cursor: pointer;" href="/view?match= $match_id &round= $round &pages= $ROUND " class="text-light match-list__view m-0">View</p>
+                    </td>
+                    <td>
+
+                        <input type="hidden" name=" $next_match_id " value=" $next_match_id ">
+                        <input type="hidden" name=" $match_id " value=" $match_id ">
+                        <button name="btn- $match_id " type="submit" class="btn btn-primary match-btn__update"><p style="text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);" class="m-0">Update</p></button>
+                    </td>
+
+                    <td>
+                        <div class=" <!--checkNextMatchPlayer($next_round, $next_match_id)--> winnerAndLoserOfR($round, $match_id)  match-list__icon">
+                            <!-- <i class="bg-success match-list__icon--check fa-regular fa-circle-check"></i>  -->
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </td>
+                </form>
+            </tr>
+            {{!-- {{else}} --}}
+            {{!-- <tr>
+                <td colspan="5" class="text-center">
+                    You are not register any courses.
+                    <a href="/course/create">Register courses</a>
+                </td>
+            </tr> --}}
+            {{/each}}
+        </tbody>
+    </table>
+    
+    </div>
+</div>
+
+<script>search()</script>

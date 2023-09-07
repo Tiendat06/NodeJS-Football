@@ -1,0 +1,51 @@
+<div class='bg-outside match-container container p-5'>
+    <div class='row'>
+        <h1
+            style='font-size: 3rem;text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);'
+            class='text-center text-light m-auto p-4 col-lg-12 col-md-12 col-sm-12'
+        >Player info</h1>
+        <input
+            style='font-size: 1.6rem; border-radius: 20px;outline:none; border: none;box-shadow: 3px 3px 5px rgba(69, 69, 69, 0.5);'
+            placeholder='Search On All'
+            type='text'
+            name=''
+            id='search-input'
+            class='manage-film__input w-50 mx-auto p-3 mb-5'
+        />
+
+        <table id='table' class='table table-hover'>
+            <thead>
+                <tr>
+                    <th scope='col'>ID</th>
+                    <th scope='col'>Name</th>
+                    <th scope='col'>Phone</th>
+                    <th scope='col'>Mail</th>
+                    <th scope='col'>Ingame</th>
+                    <th scope='col'>Attendance</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each player}}
+
+                    <tr class='tr'>
+                        <th scope='col'> {{this.player_id}} </th>
+                        <td> {{this.player_name}} </td>
+                        <td> {{this.player_phone}} </td>
+                        <td> {{this.player_mail}} </td>
+                        <td> {{this.player_ingame}}</td>
+                        <td>
+                            <a
+                                href='/info_attendance?ID={{this.player_id}}&Atd={{this.player_attendance}}'
+                                class='checkAttendance($player_id) info-check__icon d-block text-light text-center'
+                            >
+                                <i class='fa-solid fa-check'></i>
+                            </a>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>search()</script>
